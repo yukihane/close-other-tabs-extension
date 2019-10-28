@@ -1,7 +1,8 @@
 chrome.contextMenus.create({
   title: "Close Other Tabs",
   onclick: function(info, tab) {
-    chrome.tabs.query({ active: false, currentWindow: true }, function(tabs) {
+    const windowId = tab.windowId;
+    chrome.tabs.query({ active: false, windowId: windowId }, function(tabs) {
       const tabIds = tabs.map(t => t.id);
       chrome.tabs.remove(tabIds);
     });

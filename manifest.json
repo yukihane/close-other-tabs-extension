@@ -1,7 +1,7 @@
 {
   "name": "Close Other Tabs",
   "description": "Close other tabs.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "permissions": ["contextMenus", "tabs"],
   "background": {
     "scripts": ["background.js"]
