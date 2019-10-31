@@ -1,0 +1,11 @@
+{
+  "button_title": {
+    "message": "Close Other Tabs"
+  },
+  "menu_title": {
+    "message": "Close other tabs and windows"
+},
+"app_description": {
+    "message": "Add \"Close Other Tabs\" function, lost since Chrome78."
+  }
+}

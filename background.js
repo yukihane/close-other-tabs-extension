@@ -1,5 +1,5 @@
 chrome.contextMenus.create({
-  title: "Close Other Tabs and Windows",
+  title: chrome.i18n.getMessage("menu_title"),
   onclick: function(info, tab) {
     const windowId = tab.windowId;
 

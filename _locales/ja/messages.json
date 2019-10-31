@@ -1,0 +1,11 @@
+{
+    "button_title": {
+        "message": "他のタブをすべて閉じる"
+    },
+    "menu_title": {
+        "message": "他のタブとウィンドウをすべて閉じる"
+    },
+    "app_description": {
+      "message": "\"他のタブをすべて閉じる\"機能を追加します"
+    }
+  }
