@@ -1,0 +1,10 @@
+= Close Other Tabs Extension
+
+== What's this?
+
+Add "Close other tabs" button and "Close other tabs and windows" context menu, on Google Chrome and Firefox.
+
+== Intallation
+
+* https://chrome.google.com/webstore/detail/close-other-tabs/ahenmkdinicgmbodgnfojondbdpkbojd[Chrome Webstore]
+* Firefox (under review)
