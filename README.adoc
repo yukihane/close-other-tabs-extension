@@ -7,4 +7,4 @@ Add "Close other tabs" button and "Close other tabs and windows" context menu, o
 == Intallation
 
 * https://chrome.google.com/webstore/detail/close-other-tabs/ahenmkdinicgmbodgnfojondbdpkbojd[Chrome Webstore]
-* Firefox (under review)
+* https://addons.mozilla.org/firefox/addon/close-other-tabs/[Add-ons for Firefox]
