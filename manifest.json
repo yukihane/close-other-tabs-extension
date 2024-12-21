@@ -8,7 +8,6 @@
     "128": "icon/icon128.png"
   },
   "permissions": ["contextMenus", "tabs"],
-  "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
   },
