@@ -2,7 +2,7 @@
   "name": "Close Other Tabs",
   "description": "__MSG_app_description__",
   "default_locale": "en",
-  "version": "1.0.0",
+  "version": "0.2.1",
   "icons": {
     "128": "icon/icon128.png"
   },
@@ -13,5 +13,5 @@
   "browser_action": {
     "default_title": "__MSG_button_title__"
   },
-  "manifest_version": 3
+  "manifest_version": 2
 }
