@@ -1,0 +1,72 @@
+name: Package extension release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag (for example, tag/v1.0.3)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-package-${{ inputs.tag || github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.event.release.tag_name }}
+    steps:
+      - name: Validate release tag
+        shell: pwsh
+        run: |
+          if ($env:RELEASE_TAG -cnotmatch '^tag/v[0-9]+\.[0-9]+\.[0-9]+$') {
+            throw 'Expected a release tag such as tag/v1.0.3.'
+          }
+
+      - name: Check out release source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: refs/tags/${{ inputs.tag || github.event.release.tag_name }}
+          persist-credentials: false
+
+      - name: Build and verify store package
+        id: package
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $manifest = Get-Content manifest.json -Raw | ConvertFrom-Json
+          if ($env:RELEASE_TAG -cne "tag/v$($manifest.version)") {
+            throw 'Release tag does not match manifest.json version.'
+          }
+          $archive = "close-other-tabs-$($manifest.version).zip"
+          Compress-Archive -Path manifest.json, background.js, _locales, icon -DestinationPath $archive
+          $zip = [IO.Compression.ZipFile]::OpenRead((Join-Path $PWD $archive))
+          try {
+            $entries = @($zip.Entries.FullName)
+            foreach ($required in @('manifest.json', 'background.js', 'icon/icon128.png', '_locales/en/messages.json', '_locales/ja/messages.json')) {
+              if ($required -cnotin $entries) { throw "Missing ZIP entry: $required" }
+            }
+            foreach ($entry in $entries) {
+              if ($entry -cnotmatch '^(manifest\.json|background\.js|_locales/.*|icon/.*)$') {
+                throw "Unexpected ZIP entry: $entry"
+              }
+            }
+          } finally {
+            $zip.Dispose()
+          }
+          "archive=$archive" >> $env:GITHUB_OUTPUT
+
+      - name: Attach ZIP to existing release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          ARCHIVE: ${{ steps.package.outputs.archive }}
+        shell: bash
+        run: gh release upload "$RELEASE_TAG" "$ARCHIVE"
