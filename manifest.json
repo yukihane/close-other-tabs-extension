@@ -4,11 +4,22 @@
   "description": "__MSG_app_description__",
   "default_locale": "en",
   "version": "1.0.3",
+  "minimum_chrome_version": "121",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{aa93a104-24a8-47cd-ac44-a2340a694fa2}",
+      "strict_min_version": "121.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "icons": {
     "128": "icon/icon128.png"
   },
   "permissions": ["contextMenus", "tabs"],
   "background": {
+    "scripts": ["background.js"],
     "service_worker": "background.js"
   },
   "action": {
