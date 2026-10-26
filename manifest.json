@@ -3,7 +3,7 @@
   "name": "Close Other Tabs",
   "description": "__MSG_app_description__",
   "default_locale": "en",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "minimum_chrome_version": "121",
   "browser_specific_settings": {
     "gecko": {
