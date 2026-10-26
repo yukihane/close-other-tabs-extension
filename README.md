@@ -16,7 +16,7 @@ The Firefox add-on ID matches the existing AMO listing, and the extension declar
 To create the ZIP for either store, run this PowerShell command from the repository root:
 
 ```powershell
-Compress-Archive -Path manifest.json, background.js, _locales, icon -DestinationPath close-other-tabs-1.0.3.zip
+Compress-Archive -Path manifest.json, background.js, _locales, icon -DestinationPath close-other-tabs-1.0.4.zip
 ```
 
 Before submitting, load the directory through `chrome://extensions` (Developer mode → Load unpacked)
@@ -43,4 +43,4 @@ The workflow needs GitHub Actions enabled and permission for its `GITHUB_TOKEN` 
 
 The icon uses [衡山毛筆フォント行書 (KouzanBrushFontGyousyoOTF)](https://opentype.jp/kouzangyousho.htm), which the distributor permits for free commercial and logo use.
 The character in `icon/icon.svg` is converted to paths, so rendering does not require the font to be installed.
-`icon/icon128.png` is the 128×128 transparent raster version of the same artwork, with a white outline for dark browser themes.
+`icon/icon128.png` is the 128×128 raster version of the same artwork: a black character on a white circle, with transparency outside the circle for use on browser themes.
